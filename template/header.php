@@ -55,10 +55,15 @@
                 echo " <a href='../View/Edit.php' style='color: grey'>Hello ".$_SESSION['login']."</a>";
                 echo "<a href='../public/global.php' style='color: grey' id='SignOut'> Sign Out </a>";
             }
-            if(isset($_SESSION['admin']) || isset($_SESSION['moderator'])){
-              if($_SESSION['admin'] || $_SESSION['moderator']){
-                echo "<a href='../View/AdminPanel.php' style='color: grey'>| AdminPanel </a>";
+            if(isset($_SESSION['admin'])){
+              if($_SESSION['admin']){
+                echo "<a href='../Users.php' style='color: grey'> | AdminPanel </a>";
               }
+            }
+            if(isset($_SESSION['moderator'])){
+                if($_SESSION['moderator']){
+                    echo "<a href='../Users.php' style='color: grey'> | AdminPanel </a>";
+                }
             }
             ?>
           </form>

@@ -79,19 +79,21 @@ class UserController extends User
     public function SignIn($email, $password)
     {
             $row = User::login($email);
-            $_SESSION["USER"] = User::getUserInfo($row[2]);
-            if(password_verify($password,$row[0])) {
-                $_SESSION['login'] = $row[1];
-                $_SESSION['id_user'] = $row[2];
-                if ($row[3] === 'admin') {
-                    $_SESSION['admin'] = true;
-                }
-                if($row[3] === 'moderator') {
-                    $_SESSION['moderator'] = true;
-                }
-                echo "ok";
+            if(!empty($row)){
+               $_SESSION["USER"] = User::getUserInfo($row[2]);
+               if(password_verify($password,$row[0])) {
+                   $_SESSION['login'] = $row[1];
+                   $_SESSION['id_user'] = $row[2];
+                   if ($row[3] === 'admin') {
+                       $_SESSION['admin'] = true;
+                   }
+                   if($row[3] === 'moderator') {
+                       $_SESSION['moderator'] = true;
+                   }
+                   echo "ok";
+               }
             }else {
-                echo "Не правельно введены данные";
+                echo "Не правельно введены данные , либо вас забанил админ";
             }
     }
 
@@ -139,7 +141,7 @@ class UserController extends User
         if(empty($password)){
             echo "Пароль не может быть пустым";
         }
-        if (empty($result)) {
+        if(empty($result)) {
             $login = mysqli_real_escape_string(User::$sql_connect,$login);
             $firm = mysqli_real_escape_string(User::$sql_connect,$firm);
             $number_firm = mysqli_real_escape_string(User::$sql_connect,$number_firm);

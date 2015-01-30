@@ -9,13 +9,6 @@ class User {
 
     private static $role = 'user';
 
-    // blowfish
-    private static $algo = '$2a';
-
-
-
-    // cost параметр
-    private static $cost = '$10';
 
 
 
@@ -78,19 +71,22 @@ class User {
     }
 
     public static function login($email){
-        $query = 'SELECT id,role FROM users WHERE email="'. $email.'"';
+        $query = 'SELECT id,role FROM users WHERE email="'. $email.'" AND delete_user<>1';
         $user_id = mysqli_query(User::$sql_connect, $query);
         $row_user=mysqli_fetch_row($user_id);
-
-        $query = 'SELECT password,login FROM user_info WHERE user_id="' . $row_user[0].'"';
-        $resources = mysqli_query(User::$sql_connect, $query);
-        if (!$resources) {
-            return false;
+        if(!empty($row_user)){
+            $query = 'SELECT password,login FROM user_info WHERE user_id="' . $row_user[0].'"';
+            $resources = mysqli_query(User::$sql_connect, $query);
+            if (!$resources) {
+                return false;
+            }else{
+                $row = mysqli_fetch_row($resources);
+                array_push($row,$row_user[0]);
+                array_push($row,$row_user[1]);
+                return $row;
+            }
         }else{
-            $row = mysqli_fetch_row($resources);
-            array_push($row,$row_user[0]);
-            array_push($row,$row_user[1]);
-            return $row;
+            return false;
         }
 
     }

@@ -6,9 +6,9 @@ if(isset($_SESSION['login']))
 {
     echo  '
      <span id="up" style="color:red"></span>
-     <table class="table table-bordered">
-                    <table class="table">
-                        <tbody>
+     <table class="table table-bordered" style="width: 100%">
+                    <table class="table" style="width: 100%">
+                        <tbody style="width: 100%">
                         <tr class="active">
                             <th scope="row" style="font-weight: 800">Login</th>
                             <td>
