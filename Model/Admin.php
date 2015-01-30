@@ -1,6 +1,5 @@
 <?php
 require_once "conf.php";
-require_once "phpPasswordHashingLib-master/passwordLib.php";
 
 
 class  Admin {

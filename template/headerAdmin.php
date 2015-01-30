@@ -52,7 +52,7 @@
             </ul>
             <ul class="nav navbar-nav side-nav">
                 <li class="active">
-                    <a href="/News/News.php"><i class="fa fa-fw fa-table"></i> News</a>
+                    <a href="/News/News.php?page="><i class="fa fa-fw fa-table"></i> News</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav side-nav">
