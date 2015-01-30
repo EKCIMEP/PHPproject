@@ -120,8 +120,9 @@
                    url:"../CheckingData.php",
                    type:"POST",
                    data:"updateLogin="+$("#updateLogin").val()+"&updateEmail="+$("#updateEmail").val()+"&updateName="+
-                   $("#updateName").val()+"&updateLastName="+"&updateFirm="+$("#updateFirm").val()+"&updateNumFirm="+
-                   $("#updateNumFirm").val()+"&updatePassword="+$("#updatePassword")+"$update"+update,
+                   $("#updateName").val()+"&updateLastName="+$("#updateLastName").val()+"&updateFirm="+$("#updateFirm").val()+
+                   "&updateNumFirm="+$("#updateNumFirm").val()+"&updatePassword="+$("#updatePassword").val()+"&update="+update,
+
                    success:function(e){
                        $("#up").html(e);
                    }

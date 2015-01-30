@@ -67,12 +67,13 @@ class UserController extends User
 
     public function update($email, $name, $last_name,$login,$password,$firm=null,$number_firm=null)
     {
-
-    }
-
-    public function delete()
-    {
-
+        $result = User::changeInfo($email, $name, $last_name,$login,$password,$firm,$number_firm);
+        if($result){
+            echo "Данные успешно обновлены";
+            $_SESSION["USER"] = User::getUserInfo($GLOBALS["_SESSION"]["USER"][4]);
+        }else{
+            echo "Ошибка обновления данных";
+        }
     }
 
     public function SignIn($email, $password)

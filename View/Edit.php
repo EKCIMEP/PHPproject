@@ -18,7 +18,7 @@ if(isset($_SESSION['login']))
                         <tr class="active">
                             <th scope="row" style="font-weight: 800">Email</th>
                             <td>
-                               '.$GLOBALS["_SESSION"]["USER"][5].'
+                               <input style="width: 100%" id="updateEmail" value="'.$GLOBALS["_SESSION"]["USER"][5].'" readonly/>
                             </td>
                         </tr>
                         <tr class="active">
@@ -36,7 +36,7 @@ if(isset($_SESSION['login']))
                         <tr class="active">
                             <th scope="row" style="font-weight: 800">Frim</th>
                             <td>
-                                <input type="text" style="width: 100%" id="updateFrim" value="'.$GLOBALS["_SESSION"]["USER"][2].'"/>
+                                <input type="text" style="width: 100%" id="updateFirm" value="'.$GLOBALS["_SESSION"]["USER"][2].'"/>
                             </td>
                         </tr>
                         <tr class="active">

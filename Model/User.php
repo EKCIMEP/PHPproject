@@ -114,4 +114,28 @@ class User {
         }
     }
 
+    public static function changeInfo($email, $name, $last_name,$login,$password,$firm=null,$number_firm=null){
+        $result1=0;
+        $result2=0;
+        if($GLOBALS["_SESSION"]["USER"][6] != $name || $GLOBALS["_SESSION"]["USER"][7] !=  $last_name){
+            $query = 'UPDATE users  SET name="'.$name.'", last_name="'.$last_name.'" WHERE email="'.$email.'"';
+            $result1=mysqli_query(User::$sql_connect, $query);
+        }
+        if(empty($password) && $GLOBALS["_SESSION"]["USER"][1]!=$login || $GLOBALS["_SESSION"]["USER"][2]!=$firm ||
+            $GLOBALS["_SESSION"]["USER"][3]!=$number_firm ){
+            $query = 'UPDATE user_info  SET login="'.$login.'", firm="'.$firm.'", number_firm="'.$number_firm.'" WHERE user_id="'.$GLOBALS["_SESSION"]["USER"][4].'"';
+            $result2=mysqli_query(User::$sql_connect, $query);
+        }elseif(!empty($password)){
+            $password=password_hash($password,PASSWORD_BCRYPT,array("cost"=>12));
+            $query = 'UPDATE user_info  SET login="'.$login.'", firm="'.$firm.'", number_firm="'.$number_firm.'",
+                password="'.$password.'" WHERE user_id="'.$GLOBALS["_SESSION"]["USER"][4].'"';
+            $result2=mysqli_query(User::$sql_connect, $query);
+        }else{
+            return $result1;
+        }
+
+        return [$result1,$result2];
+    }
+
+
 }
