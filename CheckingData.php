@@ -6,6 +6,7 @@ require_once "Controller/AdminController.php";
 $user = new UserController();
 $admin = new AdminController();
 
+
 if(isset($_POST["email"])&& isset($_POST["Send"] )){
     if($_POST["Send"] ){
         $user->checkSendEmail($_POST['email'],$_POST['name'],$_POST['last_name']);
@@ -72,6 +73,12 @@ if(isset($_POST["checkPass"]) && isset($_POST["check"])){
 if(isset($_POST["changeAdmin"])){
     if($_POST["changeAdmin"]){
         $admin->update($_POST);
+    }
+}
+
+if(isset($_POST["AddNews"])){
+    if($_POST["AddNews"]){
+        $admin->insert($_POST["title"],$_POST["text"]);
     }
 }
 

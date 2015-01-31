@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en"><head>
 
@@ -7,6 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
+
+    <style type="text/css">
+        .peg{
+            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+        div#pagination_controls{font-size:21px;}
+        div#pagination_controls > a{ color:#06F; }
+        div#pagination_controls > a:visited{ color:#06F; }
+    </style>
+
 
     <title>Jumbotron Template for Bootstrap</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -47,12 +57,24 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li class="active">
-                    <a href="/News/Users.php"><i class="fa fa-fw fa-table"></i> Users</a>
+                 <?php
+                 if(isset($GLOBALS["_SESSION"]["admin"]))
+                 {
+                    if($GLOBALS["_SESSION"]["admin"]){
+                        echo '<a href="/News/Users.php"><i class="fa fa-fw fa-table"></i> Users</a>';
+                    }
+                 }
+                 ?>
                 </li>
             </ul>
             <ul class="nav navbar-nav side-nav">
                 <li class="active">
-                    <a href="/News/News.php?page="><i class="fa fa-fw fa-table"></i> News</a>
+                  <?php if(isset($_GET["pn"])){$pages = $_GET["pn"]; echo "<a href='/News/News.php?pn=$pages'>";}else{echo "<a href='/News/News.php?pn='>"; } ?>
+                    <i class="fa fa-fw fa-table"></i> News</a>
+                </li>
+                <li class="active">
+                    <a href='/News/AddNews.php'>
+                    <i class="fa fa-fw fa-table"></i> Add News</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav side-nav">

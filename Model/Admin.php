@@ -46,10 +46,18 @@ class  Admin {
             }else{
                 echo "good";
             }
+        }elseif($name == 'text' || $name == 'title' || $name == 'delete_news'){
+            $query = 'UPDATE news SET '.$name.'="'.$value.'" WHERE id="'.$id.'"';
+            mysqli_query(self::$sql_connect,$query);
         }else{
             $query = 'UPDATE user_info SET '.$name.'="'.$value.'" WHERE user_id="'.$id.'"';
             mysqli_query(self::$sql_connect,$query);
         }
+    }
+
+    public  function setNews($title,$text){
+        $query = 'INSERT INTO news (title,text,delete_news) VALUEs("'.$title.'","'.$text.'","0")';
+        mysqli_query(self::$sql_connect,$query);
     }
 
 }

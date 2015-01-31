@@ -2,32 +2,36 @@
 require_once "Model/News.php";
 require_once "Controller/Notification.php";
 
-class NewsController {
+class NewsController  {
 
+    private $news;
+
+
+    function __construct(){
+        $this->news = new News();
+    }
 
     public function littleNews(){
-        $news = new News();
 
-        $bool = $news->SelectNews();
+        $bool = $this->news->SelectNews();
 
         return $bool;
     }
 
-    public function sortNews(){
-        $query =  "select * from news ORDER BY id DESC";
-        $result = mysqli_query(News::$sql_connect,$query) or die("Invalid query: " . mysql_error());
+    public function Limit($limit){
+        $bool = $this->news->SelectLimitNews($limit);
 
-        $rows_max = mysqli_num_rows($result);
+        $arr = array();
 
-        return $rows_max;
+        for($i=0;$i<count($bool);$i++){
+            $arr[$i]["id"] = $bool[$i][0];
+            $arr[$i]["Title"] = $bool[$i][1];
+            $arr[$i]["Text"] = $bool[$i][2];
+            $arr[$i]["delete"] = $bool[$i][3];
+        }
+
+        return $arr;
+
     }
-
-    public function limitNews($offset,$show_pages){
-        $query_limited = "select * from news ORDER BY id DESC LIMIT $offset, $show_pages";
-        $final_result = mysqli_query(News::$sql_connect,$query_limited);
-
-        return $final_result;
-    }
-
 
 } 

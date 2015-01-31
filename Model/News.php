@@ -20,8 +20,8 @@ class News {
         $query_limited = "select COUNT(*) from news WHERE delete_news<>'1'";
         $final_result = mysqli_query(self::$sql_connect,$query_limited);
         $final_result = mysqli_fetch_all($final_result);
-        $count = $final_result[0];
-        if($count[0] < 10){
+        $count=$final_result[0][0];
+        if($count < 10){
 
             $query_limited = "select * from news WHERE delete_news<>'1'";
             $final_result = mysqli_query(self::$sql_connect,$query_limited);
@@ -37,14 +37,16 @@ class News {
 
             return $arr;
         }else{
-            return false;
+            return $count;
         }
     }
 
-    public function SelectLimitNews($limit,$page=10){
-        $query_limited = "select * from news ORDER BY id DESC LIMIT $limit, $page";
+    public function SelectLimitNews($limit){
+        $query_limited = "select * from news WHERE delete_news<>'1' ORDER BY id DESC $limit";
+
         $final_result = mysqli_query(self::$sql_connect,$query_limited);
 
+        $final_result = mysqli_fetch_all($final_result);
         return $final_result;
     }
 

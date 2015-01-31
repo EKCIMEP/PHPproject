@@ -34,5 +34,19 @@
 
 </script>
 
+<script>
+    $("#AddNews").click(function(){
+        var AddNews = true;
+       $.ajax({
+            url:"CheckingData.php",
+            type:"POST",
+            data:"title="+$("#Title").val()+"&text="+$("#Text").val()+"&AddNews="+AddNews,
+            success:function(e){
+                $("#AdminUp").html(e);
+            }
+        });
+    });
+</script>
+
 
 </body></html>

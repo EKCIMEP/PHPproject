@@ -43,4 +43,16 @@ class AdminController {
         $user = new Admin();
         $user->changeUser($name,$value,$id);
     }
+
+    public function insert($title,$text){
+        $user = new Admin();
+        if(!empty($title) && !empty($text)){
+            $user->setNews($title,$text);
+        }else{
+            echo "Title or Text не могут быть пустыми";
+        }
+
+    }
+
+
 }
