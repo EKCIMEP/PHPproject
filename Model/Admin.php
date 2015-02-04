@@ -57,7 +57,10 @@ class  Admin {
 
     public  function setNews($title,$text){
         $query = 'INSERT INTO news (title,text,delete_news) VALUEs("'.$title.'","'.$text.'","0")';
-        mysqli_query(self::$sql_connect,$query);
+        $result = mysqli_query(self::$sql_connect,$query);
+        if($result){
+            echo "Успешно добавлен";
+        }
     }
 
 }

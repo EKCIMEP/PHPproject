@@ -40,12 +40,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../public/global.php">TEST</a>
+          <a class="navbar-brand" href="../public/global.php?pn=">TEST</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-left">
             <?php if(!isset($_SESSION['login'])){
-                echo '<a href="../public/global.php" style="color: grey">Home |</a>';
+                echo '<a href="../public/global.php?pn=" style="color: grey">Home |</a>';
                 echo "<a href='../View/SignIn.php' style='color: grey'> Sign In |</a>";
                 echo "<a href='../View/registration.php' style='color: grey'> Sign Up </a>";
             }
@@ -53,7 +53,7 @@
             <?php
             if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
                 echo " <a href='../View/Edit.php' style='color: grey'>Hello ".$_SESSION['login']."</a>";
-                echo "<a href='../public/global.php' style='color: grey' id='SignOut'> Sign Out </a>";
+                echo "<a href='../public/global.php?pn=' style='color: grey' id='SignOut'> Sign Out </a>";
             }
             if(isset($_SESSION['admin'])){
               if($_SESSION['admin']){
