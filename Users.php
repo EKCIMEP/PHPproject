@@ -9,6 +9,7 @@ $admin = new AdminController();
 $array = $admin->SortInfo();
 
 echo '
+    <h1>That's just test</h1>
      <span id="AdminUp" style="color:red"></span>
      <table class="table table-bordered">
                     <table class="table">
@@ -21,6 +22,7 @@ echo '
                             <th scope="row" style="font-weight: 800">Last Name</th>
 
                             <th scope="row" style="font-weight: 800">Email</th>
+                            
 
                             <th scope="row" style="font-weight: 800">Delete</th>
 
