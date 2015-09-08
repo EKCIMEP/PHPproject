@@ -9,6 +9,6 @@ class Conf{
         return $conect;
     }
     //Hello
-    
+    //Hello2
 
 }
